@@ -19,7 +19,7 @@
 
         {% for post in posts %}
           <!-- Blog Post -->
-          <div class="card mb-4">
+          <div class="card mb-4 shadow-lg">
           {% if post.image %}
             <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap">
           {% endif %}
@@ -41,10 +41,10 @@
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">
           <li class="page-item">
-            <a class="page-link" href="#">&larr; Older</a>
+            <a class="page-link bg-primary border-right" href="#">&larr; Older</a>
           </li>
           <li class="page-item disabled">
-            <a class="page-link" href="#">Newer &rarr;</a>
+            <a class="page-link bg-primary" href="#">Newer &rarr;</a>
           </li>
         </ul>
 
