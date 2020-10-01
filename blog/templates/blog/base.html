@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,26 +13,36 @@
   <title>Blog Home - Start Bootstrap Template</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{% static 'bootstrap.min(2).css' %}" rel="stylesheet">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="css/blog-home.css" rel="stylesheet">
+  <link href="{% static 'css/blog-home.css' %} " rel="stylesheet">
+
+  <style>
+    body {
+  padding-top: 56px;
+  font-family: 'Rubik', sans-serif;
+}
+  </style>
 
 </head>
 
 <body>
 
 <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
+      <a class="navbar-brand" href="{% url 'index' %}">Bootstrap Blog0</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home
+            <a class="nav-link" href="{% url 'index' %}">Home
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -50,7 +62,8 @@
 
     <!-- Page Content -->
     {% block content %}
-
+      {% block sidebar %}
+      {% endblock sidebar %}
     {% endblock %}
 
     <!-- Footer -->
