@@ -3,10 +3,17 @@ from .models import *
 from .forms import CommentForm
 
 
+# global variables - all/most views use
+categories = Category.objects.all()  # Must be visible in sidebar; which all views tend to use
+recent_posts = Post.objects.all()[:6]    # Six most recent posts also in sidebar.
+
+
 # Create your views here.
 def index(request):
     context = {
         'posts': Post.objects.all(),
+        'categories': categories,
+        'recent_posts': recent_posts,
     }
     return render(request, 'blog/index.html', context)
 
@@ -37,5 +44,7 @@ def detail(request, slug):
         'comments': comments,
         'new_comment': new_comment,
         'comment_form': comment_form,
+        'categories': categories,
+        'recent_posts': recent_posts,
     }
     return render(request, 'blog/detail.html', context)
