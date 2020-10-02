@@ -1,0 +1,52 @@
+{% extends 'blog/base.html' %}
+
+
+
+{% block content %}
+
+    <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Blog Entries Column -->
+      <div class="col-md-8">
+
+        <h1 class="my-4">Category: {{ cat_name }}
+<!--          <small>Secondary Text</small>-->
+        </h1>
+
+
+        {% for post in posts %}
+          <!-- Blog Post -->
+          <div class="card mb-4 shadow-lg">
+          {% if post.image %}
+            <img class="card-img-top" src="{{ post.image.url }}" alt="Card image cap">
+          {% endif %}
+            <div class="card-body">
+              <h2 class="card-title">{{ post.title }}</h2>
+              <p class="card-text">{{ post.content|slice:":250" }}...</p>
+              <a href="{% url 'detail' post.slug %}" class="btn btn-primary float-right">Read More &rarr;</a>
+            </div>
+            <div class="card-footer text-muted">
+              Posted on {{ post.pub_date}} by
+              <a href="#">{{ post.author }}</a>
+            </div>
+          </div>
+
+        {% endfor %}
+
+
+
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      {% include 'blog/sidebar.html' %}
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+{% endblock %}
