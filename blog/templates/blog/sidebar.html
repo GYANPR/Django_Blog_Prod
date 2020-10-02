@@ -22,7 +22,7 @@
                 <ul class="list-unstyled mb-0">
                   {% for cat in categories %}
                   <li>
-                    <a href="#">{{ cat }}</a>
+                    <a href="{% url 'category' cat.tag %}">{{ cat }}</a>
                   </li>
                   {% endfor %}
                 </ul>

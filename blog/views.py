@@ -65,3 +65,16 @@ def detail(request, slug):
         'recent_posts': recent_posts,
     }
     return render(request, 'blog/detail.html', context)
+
+
+# could have used the category_id
+def category(request, category_tag):
+    cat = Category.objects.get(tag=category_tag)
+    posts = cat.posts.all()
+    context = {
+        'cat_name': category_tag,
+        'posts': posts,
+        'categories': categories,
+        'recent_posts': recent_posts,
+    }
+    return render(request, 'blog/category.html', context)
