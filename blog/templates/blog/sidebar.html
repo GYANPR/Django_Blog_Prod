@@ -49,7 +49,7 @@
           <h5 class="card-header">Most Recent Posts</h5>
           <div class="card-body">
             {% for recent in recent_posts %}
-            <p ><a class="text-dark">&rarr; {{ recent }}</a></p>
+            <p ><a class="text-dark" href="{% url 'detail' recent.slug %}">&rarr; {{ recent.title }}</a></p>
             {% endfor %}
           </div>
         </div>

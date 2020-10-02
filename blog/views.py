@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
 from .forms import CommentForm
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
 
 
 # global variables - all/most views use
@@ -10,8 +12,23 @@ recent_posts = Post.objects.all()[:6]    # Six most recent posts also in sidebar
 
 # Create your views here.
 def index(request):
+    posts = Post.objects.all()
+
+    paginator = Paginator(posts, 4)  # 4 posts per page
+    page = request.GET.get('page')
+    try:
+        post_list = paginator.page(page)
+    except PageNotAnInteger:
+        # if page is not an integer, deliver the first page
+        post_list = paginator.page(1)
+    except EmptyPage:
+        # if page is out of range, deliver last page of results
+        post_list = paginator.page(paginator.num_pages)
+
+
     context = {
-        'posts': Post.objects.all(),
+        'posts': post_list,
+        'page': page,
         'categories': categories,
         'recent_posts': recent_posts,
     }
@@ -21,7 +38,7 @@ def index(request):
 # we could call this view either with post id or slug
 def detail(request, slug):
     post = get_object_or_404(Post, slug=slug)       # Post.objects.get(slug=slug)
-    comments = post.comments.filter(active=True)        # All comments associated with this posts
+    comments = post.comments.filter(active=True)        # All active comments associated with this posts
     new_comment = None
 
     # Comment posted
