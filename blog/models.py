@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 # Create your models here.
@@ -24,7 +24,7 @@ class Post(models.Model):
     # overview = models.CharField()
     image = models.ImageField(upload_to='post_images', blank=True)
     slug = models.SlugField(max_length=130, unique=True)
-    content = RichTextField(config_name='default')
+    content = RichTextUploadingField(config_name='default')
     pub_date = models.DateTimeField(auto_now_add=True)
     categories = models.ManyToManyField(Category, related_name='posts')
 

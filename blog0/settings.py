@@ -133,7 +133,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CKEDITOR_UPLOAD_PATH = "uploads/"
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
-
 CKEDITOR_CONFIGS = {
     'default': {
         'skin': 'moono',
